@@ -13,3 +13,10 @@ dist
 .directus/data
 .directus/uploads
 directus
+.vercel
+.env*.local
+
+# Local development
+.pnpm-store/
+.data/
+.claude/

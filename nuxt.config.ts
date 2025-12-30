@@ -11,16 +11,13 @@ export default defineNuxtConfig({
 	},
 
 	extends: [
+		// '@nuxt-themes/docus', // Documentation theme
+		'./layers/base', // Base layer (Core)
+		'./layers/marketing', // Marketing layer (Public)
 		'./layers/proposals', // Proposals module
 		'./layers/portal', // Client portal module
 	],
 
-	components: [
-		// Disable prefixing base components with `Base`
-		{ path: '~/components/base', pathPrefix: false },
-		// Auto import components from `~/components`
-		'~/components',
-	],
 
 	css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
 
@@ -97,9 +94,40 @@ export default defineNuxtConfig({
 			width: 1200,
 			height: 630,
 		},
-		// @TODO: Fix font families for OG Image
-		// fonts: formatFonts(fontFamilies),
 	},
+
+	// PWA Configuration
+	// pwa: {
+	// 	manifest: {
+	// 		name: 'AgencyOS',
+	// 		short_name: 'AgencyOS',
+	// 		description: 'The OS for your Agency',
+	// 		theme_color: '#000000',
+	// 		background_color: '#000000',
+	// 		icons: [
+	// 			{
+	// 				src: '/pwa-192x192.png',
+	// 				sizes: '192x192',
+	// 				type: 'image/png',
+	// 			},
+	// 			{
+	// 				src: '/pwa-512x512.png',
+	// 				sizes: '512x512',
+	// 				type: 'image/png',
+	// 			},
+	// 		],
+	// 	},
+	// 	client: {
+	// 		installPrompt: true,
+	// 	},
+	// 	workbox: {
+	// 		navigateFallback: '/',
+	// 	},
+	// 	devOptions: {
+	// 		enabled: true,
+	// 		type: 'module',
+	// 	},
+	// },
 
 	// Sitemap Configuration - https://nuxtseo.com/sitemap/getting-started/how-it-works
 	sitemap: {
@@ -117,6 +145,18 @@ export default defineNuxtConfig({
 
 	build: {
 		transpile: ['v-perfect-signature'],
+	},
+
+	// Nitro configuration for Vercel deployment
+	nitro: {
+		// Externalize native modules to avoid serverless issues
+		externals: {
+			inline: ['@nuxt/content'],
+		},
+		// Rollup options to handle native modules
+		rollupConfig: {
+			external: ['better-sqlite3'],
+		},
 	},
 
 	compatibilityDate: '2024-07-28',
