@@ -1,4 +1,4 @@
-import { useRuntimeConfig } from '#imports';
+// import { useRuntimeConfig } from '#imports';
 import type { File } from '~/types';
 
 export default function useFiles() {

@@ -1,4 +1,4 @@
-import { generateId } from '~~/utils/strings';
+// import { generateId } from '~~/utils/strings';
 
 export interface Session {
 	id: string;

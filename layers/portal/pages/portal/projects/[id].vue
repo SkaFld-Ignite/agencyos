@@ -30,6 +30,10 @@ const tabs = [
 		name: 'Billing',
 		href: `/portal/projects/${params.id}/billing`,
 	},
+	{
+		name: 'Command Center',
+		href: `/portal/projects/${params.id}/resources`,
+	},
 ];
 </script>
 <template>

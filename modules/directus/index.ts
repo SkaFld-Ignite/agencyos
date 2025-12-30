@@ -21,7 +21,7 @@ export default defineNuxtModule({
 		name: 'agencyos-nuxt-directus',
 		configKey: 'directus',
 		compatibility: {
-			nuxt: '^3.0.0',
+			nuxt: '^3.0.0 || ^4.0.0',
 		},
 
 		defaults: {
@@ -165,9 +165,13 @@ export default defineNuxtModule({
 		// Handle Redirects
 		try {
 			const redirects = await directus.request(readItems('redirects'));
+			// Filter out redirects with null/empty values
+			const validRedirects = redirects.filter(
+				(redirect) => redirect.url_old && redirect.url_new,
+			);
 
-			if (redirects.length > 0) {
-				for (const redirect of redirects) {
+			if (validRedirects.length > 0) {
+				for (const redirect of validRedirects) {
 					let responseCode = redirect.response_code ? parseInt(redirect.response_code as any) : 301;
 
 					if (responseCode !== 301 && responseCode !== 302) {
@@ -184,11 +188,17 @@ export default defineNuxtModule({
 					});
 				}
 
-				log.success(`${redirects.length} Redirects loaded`);
+				log.success(`${validRedirects.length} Redirects loaded`);
 
-				for (const redirect of redirects) {
+				for (const redirect of validRedirects) {
 					log.info(`  • ${redirect.response_code}`, `From: ${redirect.url_old}`, `To: ${redirect.url_new}`);
 				}
+			}
+
+			// Warn about invalid redirects
+			const invalidCount = redirects.length - validRedirects.length;
+			if (invalidCount > 0) {
+				log.warn(`${invalidCount} redirect(s) skipped due to missing url_old or url_new values`);
 			}
 		} catch (error) {
 			log.warn('Unable to load redirects due to the following error');

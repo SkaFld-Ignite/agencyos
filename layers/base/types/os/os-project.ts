@@ -20,6 +20,14 @@ export interface OsProject {
 	contacts?: (string | OsProjectContact)[];
 	billing?: string;
 	tasks?: (string | OsTask)[];
+	resources?: {
+		github?: { repoUrl: string; repoName: string };
+		vercel?: { projectUrl: string; deploymentUrl: string };
+		supabase?: { projectUrl: string; ref: string };
+		figma?: { fileUrl: string };
+		docs?: { url: string };
+		[key: string]: any;
+	};
 }
 
 export interface OsProjectContact {

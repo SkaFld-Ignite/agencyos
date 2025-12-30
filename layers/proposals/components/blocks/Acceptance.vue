@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { transformSchema } from '~/utils/formkit';
+// import { transformSchema } from '~/utils/formkit';
 import type { OsProposalApproval } from '~/types';
 import type { LocationQuery } from 'vue-router';
 

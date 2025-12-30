@@ -149,14 +149,7 @@ export default defineNuxtConfig({
 
 	// Nitro configuration for Vercel deployment
 	nitro: {
-		// Externalize native modules to avoid serverless issues
-		externals: {
-			inline: ['@nuxt/content'],
-		},
-		// Rollup options to handle native modules
-		rollupConfig: {
-			external: ['better-sqlite3'],
-		},
+		preset: 'vercel',
 	},
 
 	compatibilityDate: '2024-07-28',

@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { centsToDollars } from '~/utils/currency';
+// import { centsToDollars } from '~/utils/currency';
 
 const config = useRuntimeConfig();
 

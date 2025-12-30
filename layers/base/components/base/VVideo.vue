@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { generateVideoEmbed } from '~~/utils/embed';
+// import { generateVideoEmbed } from '~~/utils/embed';
 
 interface VideoProps {
 	url: string;

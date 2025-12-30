@@ -2,7 +2,7 @@ import auth from '../middleware/auth';
 import common from '../middleware/common';
 import guest from '../middleware/guest';
 
-import { addRouteMiddleware, defineNuxtPlugin, useDirectusAuth, useRuntimeConfig, useState } from '#imports';
+// import { addRouteMiddleware, defineNuxtPlugin, useDirectusAuth, useRuntimeConfig, useState } from '#imports';
 
 export default defineNuxtPlugin(async () => {
 	try {
